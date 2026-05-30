@@ -1,0 +1,59 @@
+{
+  "project": "CTA Agent",
+  "updated_at": "2026-05-22",
+  "articles": {
+    "total": 10,
+    "unprocessed": 0,
+    "sources": 10
+  },
+  "strategies": {
+    "active": [
+      "strategies/turtle_trading_strategy.py                              — 🎓 毕业",
+      "strategies/concretum_dual_channel_v2b_strategy.py                  — 保留",
+      "strategies/trend_state_machine_strategy.py                         — 保留",
+      "strategies/smash_day_strategy.py                                   — 保留",
+      "strategies/concretum_intraday_atr_breakout_v1_strategy.py          — 保留",
+      "strategies/multi_ma_trend_strategy.py                              — 保留(旧)",
+      "strategies/intraday_momentum_strategy.py                           — 保留(旧)"
+    ],
+    "archived": [
+      "references/old/kalman_trend_strategy.py"
+    ]
+  },
+  "research_projects": {
+    "completed": {
+      "fast-trend-following": "已淘汰",
+      "coding-trend-factor": "已关闭 — Retain",
+      "intraday-momentum": "已关闭 — Retain",
+      "concretum-dual-channel": "已关闭 — Retain (v2b, best jm99 0.96)",
+      "trend-state-machine": "已关闭 — Retain (jm99 0.78)",
+      "smash-day": "已关闭 — Retain (j99 0.49)",
+      "concretum-intraday-atr": "已关闭 — Retain (rb99 0.68)",
+      "improved-tsmom": "已关闭 — Discard (预验证失败)",
+      "turtle-trading": "🎓 已毕业 — i99 Sharpe 1.03"
+    },
+    "active": {
+      "two-centuries-trend-following": "research/2026-05-22_two-centuries-trend-following/"
+    },
+    "pending": {
+      "basis-reversal": "research/2026-05-19_basis-reversal/",
+      "donchian-channel": "research/2026-05-19_donchian-channel/",
+      "fast-alpha-overlay": "research/2026-05-19_fast-alpha-overlay/"
+    }
+  },
+  "output": {
+    "graduated": [
+      "output/strategies/turtle_trading_strategy.py",
+      "output/configs/turtle_trading_i99.json",
+      "output/configs/turtle_trading_jm99.json",
+      "output/reports/turtle_trading_graduate.md"
+    ],
+    "retained_configs": [
+      "output/configs/concretum_dual_channel_jm99.json"
+    ],
+    "reports": [
+      "output/reports/concretum_dual_channel_jm99_report.html",
+      "output/reports/turtle_trading_graduate.md"
+    ]
+  }
+}

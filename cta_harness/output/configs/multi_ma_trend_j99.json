@@ -1,0 +1,38 @@
+{
+  "strategy": "MultiMaTrendStrategy",
+  "strategy_file": "strategies/multi_ma_trend_strategy.py",
+  "symbol": "j99.DCE",
+  "interval": "1m",
+  "parameters": {
+    "ma_short": 10,
+    "ma_mid1": 20,
+    "ma_mid2": 50,
+    "ma_long1": 100,
+    "ma_long2": 200,
+    "entry_threshold": 0.008,
+    "exit_threshold": 0.0,
+    "atr_window": 20,
+    "atr_stop_multiplier": 5.0,
+    "fixed_size": 1
+  },
+  "backtest": {
+    "capital": 200000,
+    "size": 100,
+    "rate": 0.0001,
+    "slippage": 0,
+    "pricetick": 0.5
+  },
+  "results": {
+    "period": "2016-05-06 ~ 2026-05-08",
+    "sharpe_ratio": 0.950,
+    "total_return_pct": 297.5,
+    "max_drawdown_pct": -19.7,
+    "total_trades": 1005,
+    "split_test": {
+      "first_half_sharpe": 1.17,
+      "second_half_sharpe": 0.62,
+      "both_positive": true
+    }
+  },
+  "note": "接近毕业标准(Sharpe>=1.0)，前半段超标，后半段衰减但仍强劲"
+}

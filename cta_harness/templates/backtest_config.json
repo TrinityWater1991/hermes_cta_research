@@ -1,0 +1,11 @@
+{
+    "vt_symbol": "rb2401.SHFE",
+    "interval": "1m",
+    "start": "2023-01-01",
+    "end": "2023-12-31",
+    "rate": 0.0001,
+    "slippage": 1,
+    "size": 10,
+    "pricetick": 1,
+    "capital": 1000000
+}

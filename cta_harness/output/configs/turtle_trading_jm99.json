@@ -1,0 +1,23 @@
+{
+  "strategy": "turtle_trading_strategy",
+  "symbol": "jm99.DCE",
+  "params": {
+    "entry_window": 6,
+    "exit_window": 3,
+    "atr_window": 20,
+    "stop_multiplier": 1.5,
+    "fixed_size": 1,
+    "filter_ema_window": 60
+  },
+  "meta": {
+    "kline": "2h (from 1m)",
+    "slippage": 0,
+    "rate": 0.0001,
+    "capital": 200000,
+    "period": "2021-01-04 ~ 2026-05-20",
+    "sharpe": 0.83,
+    "return_pct": 71.6,
+    "max_dd_pct": -20.3,
+    "trade_count": 746
+  }
+}
