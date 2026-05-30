@@ -1,0 +1,5 @@
+venv/
+hermes-agent-2026.5.29/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
