@@ -1,5 +1,7 @@
 # 操作日志
 
+## [2026-05-31] ingest | Gold Trend Following (Unger Academy) — CCI ±300 + 日高低突破
+
 ## [2026-05-31] retain | AlphaFlow v2 — 动态仓位 Sharpe 0.73 +30% -8.4%
 
 ## [2026-05-31] ingest | Alpha Flow Volatility Envelope — On-Chain Mind
