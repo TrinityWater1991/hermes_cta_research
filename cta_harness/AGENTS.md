@@ -158,6 +158,22 @@ Wiki页面使用中文编写。
 - pricetick: 0.000001（最小价格变动）
 - interval: "1m"（1分钟K线）
 
+### 品种参数速查
+
+不同品种的 size/pricetick/rate 差异较大，回测时必须按品种设置：
+
+| 品种 | size | pricetick | rate | 说明 |
+|------|------|-----------|------|------|
+| rb99.SHFE | 10 | 1 | 0.0001 | 螺纹钢期货（10吨/手） |
+| BTCUSDT.BINANCE | 1 | 0.01 | 0.0004 | BTC/USDT 永续合约 |
+| BNBUSDT.BINANCE | 1 | 0.001 | 0.0004 | BNB/USDT 永续合约 |
+| ETHUSDT.BINANCE | 1 | 0.001 | 0.0004 | ETH/USDT 永续合约 |
+
+加密永续合约说明：
+- size=1：1张合约 = 1 USDT 名义价值
+- rate=0.0004：Binance taker费率 0.04%
+- slippage=0：主流币流动性极好，初始验证可设0
+
 ## 投研工具
 
 ### 数据层
@@ -249,16 +265,16 @@ python scripts/vn_backtest_report.py -s rb99.SHFE -c MyStrategy -i 1m -S 2024-01
 
 ### 默认回测参数
 
+参数根据合约品种自动选择，参见上方「品种参数速查」表。
+
 ```
-合约: rb99.SHFE
+合约: rb99.SHFE（期货）或 BTCUSDT.BINANCE（加密）
 数据周期: 1m（策略内用BarGenerator合成更高周期）
 回测区间: 数据库中可用的最长区间（vn_data_overview.py查询）
 capital: 200,000
-rate: 0.0001
-size: 10
-pricetick: 1
 slippage: 0（初始验证）→ 1（稳健性验证）
 ```
+其余参数（size/pricetick/rate）从品种参数速查表取值。
 
 ### Step 1: 判断相关性
 
@@ -298,12 +314,15 @@ slippage: 0（初始验证）→ 1（稳健性验证）
 
 ### Step 4: Backtest（回测验证）
 
-1. 确认数据可用：`python scripts/vn_data_overview.py -s rb99 -i 1m`
-2. 运行回测（slippage=0）：
+1. 确认数据可用：`python scripts/vn_data_overview.py -s {symbol} -i 1m`
+2. 根据品种参数速查表确定 size/pricetick/rate，运行回测（slippage=0）：
    ```
-   python scripts/vn_backtest_run.py -s rb99.SHFE -i 1m -S {start} -e {end} \
-       --strategy {name}_strategy --capital 200000 --size 10 --rate 0.0001 --slippage 0 --pricetick 1 -o json
+   python scripts/vn_backtest_run.py -s {symbol} -i 1m -S {start} -e {end} \
+       --strategy {name}_strategy --capital 200000 \
+       --size {size} --rate {rate} --pricetick {pricetick} --slippage 0 -o json
    ```
+   示例（螺纹钢）：`-s rb99.SHFE --size 10 --rate 0.0001 --pricetick 1`
+   示例（BTC）：`-s BTCUSDT.BINANCE --size 1 --rate 0.0004 --pricetick 0.01`
 3. 诊断决策：
    - Sharpe < 0.3 且交易次数合理 → 策略逻辑有问题，调整后重试（最多3次）
    - Sharpe 0.3~0.8 → 进入参数优化（Step 5）
