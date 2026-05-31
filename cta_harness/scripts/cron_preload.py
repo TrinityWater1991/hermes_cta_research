@@ -2,7 +2,7 @@
 """Cron job 预加载脚本：输出 AGENTS.md 中的工程规范和关键规则。"""
 import os
 
-PROJECT_DIR = "/home/admin/github/cta_agent"
+PROJECT_DIR = "/home/admin/Desktop/hermes vnpy cta research/cta_harness"
 AGENTS_PATH = os.path.join(PROJECT_DIR, "AGENTS.md")
 
 def extract_section(lines, start_marker, end_marker=None):
