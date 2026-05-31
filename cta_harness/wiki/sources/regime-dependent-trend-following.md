@@ -38,4 +38,8 @@
 
 ## 结论
 
-_待验证_
+**已淘汰**（2026-05-31）。10+变体在 BTCUSDT.BINANCE 上测试，最优 Sharpe=0.099。
+
+编译为加密单标的策略不可行：原文框架面向多资产组合管理，体制维度在组合层面提供分散化价值，单标的上丧失预测力。EMA偏离信号+ATR比率体制检测在BTC上无alpha。
+
+关键教训：依赖分散化的多资产框架不可移植为单标的策略。见 `wiki/lessons/regime-dependent-allocation-crypto.md`。

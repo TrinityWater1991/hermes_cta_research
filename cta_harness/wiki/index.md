@@ -15,6 +15,7 @@
 - [Trade Like Mulvaney](sources/trade-like-mulvaney.md) — 逆向工程Mulvaney 26年长线趋势跟踪系统
 - [Trend Following Replication](sources/trend-following-replication.md) — 多窗口动量z-score + 两层波动率归一化（skip: 信号不显著）
 - [Regime-Dependent Trend Following](sources/regime-dependent-trend-following.md) — 体制检测+动态仓位，Sharpe TSM 0.21→OPT 0.51
+- [Alpha Flow Volatility Envelope](sources/alpha-flow-volatility-envelope.md) — 波动率自适应双EMA趋势跟踪，体制锁定状态机
 
 ## 交易概念（concepts/）
 

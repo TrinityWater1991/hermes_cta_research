@@ -1,5 +1,9 @@
 # 操作日志
 
+## [2026-05-31] ingest | Alpha Flow Volatility Envelope — On-Chain Mind
+
+波动率自适应双EMA趋势跟踪策略。核心创新：双EMA(HLC/3)基线 + 基线波动率包络(非价格ATR) + 收盘价体制锁定状态机。自2012年BTC数据134% CAGR。适配加密24x7天然特性。
+
 ## [2026-05-31] ingest | Rethinking Trend Following: Regime-Dependent Allocation — Quantocracy/Alpha Architect
 
 ## [2026-05-31] discard | Intraday Trend Trade Management — 3次回测全负 (最优 Sharpe -0.24)
