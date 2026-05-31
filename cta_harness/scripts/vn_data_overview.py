@@ -8,8 +8,10 @@
 from __future__ import annotations
 
 import json
+import sqlite3
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime
+from types import SimpleNamespace
 from typing import Optional
 
 import click
@@ -28,7 +30,8 @@ console = Console()
 
 
 # 各周期每交易日大致预期条数（用于缺口估算）
-INTERVAL_EXPECTED_PER_DAY: dict[str, int] = {
+# 传统期货交易所（每天约6小时交易）
+INTERVAL_EXPECTED_PER_DAY_FUTURES: dict[str, int] = {
     "1m": 240,
     "5m": 48,
     "15m": 16,
@@ -36,6 +39,30 @@ INTERVAL_EXPECTED_PER_DAY: dict[str, int] = {
     "d": 1,
     "w": 1,
 }
+# 加密货币/24x7交易所
+INTERVAL_EXPECTED_PER_DAY_CRYPTO: dict[str, int] = {
+    "1m": 1440,
+    "5m": 288,
+    "15m": 96,
+    "1h": 24,
+    "d": 1,
+    "w": 1,
+}
+# 需要按24x7标准计算预期条数的交易所
+CRYPTO_EXCHANGES = frozenset({"BINANCE", "OKX", "BYBIT", "BITGET", "GATE"})
+
+
+def _is_crypto_exchange(exchange_value: Optional[str]) -> bool:
+    """判断是否加密货币交易所（24x7交易）."""
+    if exchange_value is None:
+        return False
+    return exchange_value.upper() in CRYPTO_EXCHANGES
+
+
+def _get_expected_per_day(interval_str: str, exchange_value: Optional[str]) -> int:
+    """根据交易所类型和周期返回每天预期条数."""
+    lut = INTERVAL_EXPECTED_PER_DAY_CRYPTO if _is_crypto_exchange(exchange_value) else INTERVAL_EXPECTED_PER_DAY_FUTURES
+    return lut.get(interval_str, 0)
 
 
 def _fmt_dt(dt: Optional[datetime]) -> str:
@@ -49,6 +76,42 @@ def _vt_symbol(symbol: str, exchange) -> str:
     """构造vt_symbol."""
     ex = exchange.value if exchange else ""
     return f"{symbol}.{ex}"
+
+
+def _get_bar_overview_fallback() -> list:
+    """当 get_bar_overview() 因未知交易所崩溃时，通过直接 SQL 查询兜底.
+
+    vnpy_sqlite 的 get_bar_overview() 会尝试 Exchange(overview.exchange)，
+    对于 BINANCE 等不在 vnpy Exchange 枚举中的交易所会抛出 ValueError。
+    """
+    try:
+        from vnpy.trader.utility import get_file_path
+    except ImportError:
+        return []
+
+    db_path = get_file_path("database.db")
+
+    try:
+        conn = sqlite3.connect(db_path)
+    except sqlite3.Error:
+        return []
+
+    rows = conn.execute(
+        "SELECT symbol, exchange, interval, start, end, count FROM dbbaroverview"
+    ).fetchall()
+    conn.close()
+
+    results = []
+    for sym, ex, interval_str, start_str, end_str, cnt in rows:
+        results.append(SimpleNamespace(
+            symbol=sym,
+            exchange=SimpleNamespace(value=ex),
+            interval=SimpleNamespace(value=interval_str),
+            start=datetime.fromisoformat(start_str) if start_str else None,
+            end=datetime.fromisoformat(end_str) if end_str else None,
+            count=cnt,
+        ))
+    return results
 
 
 @click.command()
@@ -77,10 +140,18 @@ def main(
     """
     db = get_database()
 
-    # 获取Bar概览
-    bar_overviews = db.get_bar_overview()
-    # 获取Tick概览
-    tick_overviews = db.get_tick_overview() if tick else []
+    # 获取Bar概览 — vnpy_sqlite 遇到 BINANCE 等未知交易所会崩，兜底直接 SQL
+    try:
+        bar_overviews = db.get_bar_overview()
+    except ValueError:
+        bar_overviews = _get_bar_overview_fallback()
+    # 获取Tick概览（同样可能因未知交易所崩溃）
+    tick_overviews = []
+    if tick:
+        try:
+            tick_overviews = db.get_tick_overview()
+        except ValueError:
+            pass  # 没有BINANCE tick数据，忽略即可
 
     # 过滤Bar
     bars = []
@@ -124,7 +195,8 @@ def main(
                 coverage = ""
                 if ov.start and ov.end and ov.count:
                     days = (ov.end - ov.start).days + 1
-                    expected = INTERVAL_EXPECTED_PER_DAY.get(interval_str, 0) * max(days, 1)
+                    ex_val = ov.exchange.value if ov.exchange else None
+                    expected = _get_expected_per_day(interval_str, ex_val) * max(days, 1)
                     if expected > 0:
                         ratio = ov.count / expected
                         if ratio >= 0.95:
@@ -181,7 +253,8 @@ def main(
                 if not ov.start or not ov.end or not ov.count:
                     continue
                 days = (ov.end - ov.start).days + 1
-                per_day = INTERVAL_EXPECTED_PER_DAY.get(interval_str, 0)
+                ex_val = ov.exchange.value if ov.exchange else None
+                per_day = _get_expected_per_day(interval_str, ex_val)
                 if per_day == 0:
                     continue
                 expected = per_day * days
@@ -221,7 +294,8 @@ def main(
             }
             if gaps and ov.start and ov.end and ov.count:
                 days = (ov.end - ov.start).days + 1
-                per_day = INTERVAL_EXPECTED_PER_DAY.get(interval_str, 0) if interval_str else 0
+                ex_val = ov.exchange.value if ov.exchange else None
+                per_day = _get_expected_per_day(interval_str, ex_val) if interval_str else 0
                 if per_day > 0:
                     expected = per_day * days
                     missing_days = (expected - ov.count) / per_day
