@@ -49,8 +49,6 @@ class AlphaFlowStrategy(CtaTemplate):
     atr_period: int = 14
     atr_stop_mult: float = 3.0
     fixed_size: int = 1
-    use_dynamic_size: bool = False  # 动态仓位：capital/ATR
-    position_multiplier: float = 0.01  # 仓位乘数(0-1), 0.01=1%风险
     bar_interval_minutes: int = 60
 
     # ── 策略变量 ──────────────────────────────────────────
@@ -72,8 +70,6 @@ class AlphaFlowStrategy(CtaTemplate):
         "atr_period",
         "atr_stop_mult",
         "fixed_size",
-        "use_dynamic_size",
-        "position_multiplier",
         "bar_interval_minutes",
     ]
     variables: list[str] = [
@@ -204,16 +200,6 @@ class AlphaFlowStrategy(CtaTemplate):
             return True
         return bar.close_price > self.filter_ema
 
-    def _get_size(self) -> int:
-        """动态仓位：capital/ATR × multiplier。ATR大→仓位小，ATR小→仓位大."""
-        if not self.use_dynamic_size:
-            return self.fixed_size
-        if self.atr_value <= 0:
-            return 1
-        capital: float = 200000.0
-        dynamic: float = (capital / self.atr_value) * self.position_multiplier
-        return max(1, int(dynamic))
-
     def _handle_no_position(self, bar: BarData) -> None:
         """空仓入场逻辑."""
         prev_regime: int = self.regime
@@ -226,7 +212,7 @@ class AlphaFlowStrategy(CtaTemplate):
         # 体制翻转 + 方向过滤
         if prev_regime == 0 and self.regime == 1:
             if self._is_bull_filter(bar):
-                self.buy(bar.close_price, self._get_size())
+                self.buy(bar.close_price, self.fixed_size)
                 self.bars_in_trade = 0
                 self.stop_price = 0.0
 
