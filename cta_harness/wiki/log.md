@@ -1,5 +1,15 @@
 # 操作日志
 
+## [2026-05-31] ingest | Rethinking Trend Following: Regime-Dependent Allocation — Quantocracy/Alpha Architect
+
+## [2026-05-31] discard | Intraday Trend Trade Management — 3次回测全负 (最优 Sharpe -0.24)
+
+## [2026-05-31] ingest | How to Manage an Intraday Trend Trade — Quantocracy/Concretum Group
+
+## [2026-05-31] discard | Trend Following Replication — 3次回测全负 (最优 Sharpe -0.44)
+
+## [2026-05-31] ingest | Trend Following (1/4): Replicating Your Own Program — Quantocracy/Beyond Passive
+
 ## [2026-05-19] backtest | 多品种批量回测（16合约×2策略）
 
 在16个期货品种上测试IntradayMomentum和MultiMaTrend两个策略。

@@ -13,7 +13,8 @@
 - [RSI-2 Mean Reversion](sources/rsi-2-mean-reversion.md) — 趋势过滤的RSI-2均值回归
 - [Turtle Trading (Rogue Quant)](sources/turtle-trading-rogue-quant.md) — 海龟交易系统在40+期货市场验证
 - [Trade Like Mulvaney](sources/trade-like-mulvaney.md) — 逆向工程Mulvaney 26年长线趋势跟踪系统
-- [Keltner Channel Breakout](sources/keltner-channel-breakout.md) — Keltner通道突破，EMA中线离场
+- [Trend Following Replication](sources/trend-following-replication.md) — 多窗口动量z-score + 两层波动率归一化（skip: 信号不显著）
+- [Regime-Dependent Trend Following](sources/regime-dependent-trend-following.md) — 体制检测+动态仓位，Sharpe TSM 0.21→OPT 0.51
 
 ## 交易概念（concepts/）
 
@@ -47,4 +48,4 @@
 - [三层EMA状态机的信号延迟](lessons/ema-layer-spacing.md) — EMA层间距与信号延迟的关系
 - [反转策略的品种特异性](lessons/reversal-cross-market-specificity.md) — 美国有效不等于中国有效
 |- [ATR止损与反突破离场重叠](lessons/turtle-redundant-exit-logic.md) — 两套离场机制同时存在导致参数无效
-|- [CFM趋势信号在中国商品期货上不成立](lessons/cfm-trend-signal-chinese-commodity.md) — 波动率归一化EMA偏离信号在rb99/j99/i99/jm99上月频方向准确率均≤56.5%
+|- [加密实盘费率实测：22个策略10天26,765笔交易](lessons/crypto-fee-drag-22-strategies.md) — 趋势跟踪全灭，RSI均值回归全赢，费率是杀手
