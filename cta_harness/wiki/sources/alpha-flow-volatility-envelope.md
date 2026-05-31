@@ -52,3 +52,19 @@ Alpha Flow的核心创新是**基线的波动率包络**（而非价格波动率
 - 24x7交易无session结构 → 收盘价锚定于K线周期（如1h bar close），天然适配
 - 加密高波动是常态 → 波动率自适应包络比固定百分比通道更适合
 - 体制锁定 → 减少加密市场常见的假突破噪音
+
+---
+
+## 研究结论 (2026-05-31)
+
+**Status: Discard**
+
+在BTCUSDT.BINANCE 1h K线（2019-2026）上测试5个参数变体，最优Sharpe=0.07，所有变体Sharpe<0.1。
+
+失败原因：
+- ATR包络在加密高波下无法区分趋势与噪音
+- 体制锁定+ATR止损组合导致"最大回撤吸收所有利润"
+- 0.08%往返手续费在微薄利润上致命
+- 原文134% CAGR本质是"极低频调仓的买入持有"，非交易系统
+
+教训：[wiki/lessons/alpha-flow-envelope-crypto.md](../../lessons/alpha-flow-envelope-crypto.md)

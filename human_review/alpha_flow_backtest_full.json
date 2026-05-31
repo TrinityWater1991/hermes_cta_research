@@ -1,0 +1,41 @@
+{
+  "symbol": "BTCUSDT.BINANCE",
+  "interval": "1m",
+  "strategy": "alpha_flow_strategy",
+  "setting": {
+    "vol_multiplier": 3.0,
+    "filter_ema_period": 0,
+    "use_dynamic_size": "true",
+    "position_multiplier": 0.005
+  },
+  "stats": {
+    "start_date": "2020-01-01",
+    "end_date": "2026-05-30",
+    "total_days": 2342,
+    "profit_days": 363,
+    "loss_days": 418,
+    "capital": 200000,
+    "end_balance": 521166.05,
+    "max_drawdown": -37339.17,
+    "max_ddpercent": -11.82,
+    "max_drawdown_duration": 98,
+    "total_net_pnl": 321166.05,
+    "daily_net_pnl": 137.13,
+    "total_commission": 26216.03,
+    "daily_commission": 11.19,
+    "total_slippage": 0.0,
+    "daily_slippage": 0.0,
+    "total_turnover": 65540070.84,
+    "daily_turnover": 27984.66,
+    "total_trade_count": 520,
+    "daily_trade_count": 0.22,
+    "total_return": 160.58,
+    "annual_return": 16.46,
+    "daily_return": 0.041,
+    "return_std": 0.63,
+    "sharpe_ratio": 1.00,
+    "return_drawdown_ratio": 13.59,
+    "rgr_ratio": 1.00
+  },
+  "trade_count": 520
+}
