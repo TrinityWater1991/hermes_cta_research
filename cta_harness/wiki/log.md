@@ -1,5 +1,7 @@
 # 操作日志
 
+## [2026-05-31] close | CCI Extreme Trend — Retain (slippage=1 Sharpe=0.61, 稳健但未达毕业标准)
+
 ## [2026-05-31] ingest | Gold Trend Following (Unger Academy) — CCI ±300 + 日高低突破
 
 ## [2026-05-31] retain | AlphaFlow v2 — 动态仓位 Sharpe 0.73 +30% -8.4%

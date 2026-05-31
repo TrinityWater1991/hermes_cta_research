@@ -40,6 +40,7 @@
 | [SmashDay](strategies/smash-day.md) | 已产出 | Larry Williams反转模式 | 0.49 |
 | [ConcretumIntradayATR](strategies/concretum-intraday-atr.md) | 已产出 | 日内ATR通道突破 | 0.68 |
 | [KeltnerBreakout](strategies/keltner-breakout.md) | 已产出 | Keltner通道突破，EMA中线离场 | 0.61 |
+| [CciExtremeTrend](strategies/cci-extreme-trend.md) | 已产出 | CCI ±300极端值趋势跟踪，ATR止损 | 0.61 |
 
 ## 经验教训（lessons/）
 
