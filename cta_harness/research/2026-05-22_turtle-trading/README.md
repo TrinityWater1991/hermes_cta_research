@@ -1,5 +1,7 @@
 # Turtle Trading Strategy 研究项目
 
+**状态：** ✅ 已关闭 (Retain) | **日期：** 2026-05-22
+
 ## 来源
 Rogue Quant Substack: "I Backtested The Legendary Turtle Trading Strategy Across 40 Futures Markets"
 
