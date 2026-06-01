@@ -17,6 +17,9 @@
 - [Regime-Dependent Trend Following](sources/regime-dependent-trend-following.md) — 体制检测+动态仓位，Sharpe TSM 0.21→OPT 0.51
 - [Alpha Flow Volatility Envelope](sources/alpha-flow-volatility-envelope.md) — 波动率自适应双EMA趋势跟踪，体制锁定状态机
 - [Gold Trend Following (Unger)](sources/unger-gold-trend-following.md) — CCI ±300极端值 + 日高低突破双策略
+- [Multi-Timeframe MACD BTC](sources/multi-timeframe-macd-btc.md) — D1H1 MACD趋势过滤 + 价格行为追踪止损
+- [Dual Momentum on Bitcoin](sources/dual-momentum-bitcoin.md) — 绝对+相对双动量过滤，ATR追踪止损
+- [Catching Crypto Trends](sources/catching-crypto-trends.md) — 9-Donchian集成+波动率目标+中点追踪止损
 
 ## 交易概念（concepts/）
 
@@ -41,9 +44,11 @@
 | [ConcretumIntradayATR](strategies/concretum-intraday-atr.md) | 已产出 | 日内ATR通道突破 | 0.68 |
 | [KeltnerBreakout](strategies/keltner-breakout.md) | 已产出 | Keltner通道突破，EMA中线离场 | 0.61 |
 | [CciExtremeTrend](strategies/cci-extreme-trend.md) | 已产出 | CCI ±300极端值趋势跟踪，ATR止损 | 0.61 |
+| [MulvaneyTrend](strategies/mulvaney-trend.md) | 🔄 Retain | Donchian通道突破+中线追踪止损+动态仓位(2h) | **1.02** |
+| [DualMomentum](strategies/dual-momentum.md) | 🔄 Retain | 双动量过滤(SMA+ROC)+ATR追踪止损+动态仓位(4h) | **1.00** |
+| [DonchianEnsemble](strategies/donchian-ensemble.md) | 🔄 Retain | 5-Donchian集成+中点追踪止损+动态仓位(日线) | **0.48** |
 
 ## 经验教训（lessons/）
-
 - [高频趋势跟踪的滑点陷阱](lessons/slippage-trap.md) — 零滑点回测的Sharpe不可信，必须加入真实成本验证
 - [1小时通道突破必须用停止单](lessons/stop-order-breakout.md) — 收盘价判断会错过盘中突破
 - [TSMOM在中国商品期货上不成立](lessons/tsmom-chinese-commodity.md) — 日频t-stat TSMOM准确率≤52%

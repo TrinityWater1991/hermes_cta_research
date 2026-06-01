@@ -1,0 +1,46 @@
+{
+  "strategy": "concretum_dual_channel_v2b_strategy",
+  "symbol": "jm99.DCE",
+  "params": {
+    "entry_window": 10,
+    "exit_window": 8,
+    "ema_window": 60,
+    "atr_window": 20,
+    "atr_stop_multiplier": 4.0,
+    "fixed_size": 1
+  },
+  "meta": {
+    "kline": "2h (from 1m)",
+    "slippage": 0,
+    "rate": 0.0001,
+    "capital": 200000,
+    "period": "2021-01-04 ~ 2026-05-20",
+    "sharpe": 1.00,
+    "return_pct": 60.6,
+    "max_dd_pct": -11.4,
+    "trade_count": 1432
+  }
+}
+{
+  "strategy": "concretum_dual_channel_v2b_strategy",
+  "symbol": "rb99.SHFE",
+  "params": {
+    "entry_window": 10,
+    "exit_window": 8,
+    "ema_window": 60,
+    "atr_window": 20,
+    "atr_stop_multiplier": 4.0,
+    "fixed_size": 1
+  },
+  "meta": {
+    "kline": "2h (from 1m)",
+    "slippage": 0,
+    "rate": 0.0001,
+    "capital": 200000,
+    "period": "2021-01-04 ~ 2026-03-30",
+    "sharpe": 1.31,
+    "return_pct": 13.3,
+    "max_dd_pct": -1.5,
+    "trade_count": 1412
+  }
+}

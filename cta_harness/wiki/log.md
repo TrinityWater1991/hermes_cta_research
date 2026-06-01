@@ -1,5 +1,65 @@
 # 操作日志
 
+## [2026-06-01 20:00] skip | 定时巡检 — 无新文章（连续第5次SKIP）
+
+9波Search无新发现。新出现 Setup4Alpha「Trend Following vs Mean Reversion 2026」— 多策略组合框架（趋势+均值回归+Shannon再平衡），无单标的CTA入场/离场规则，paywalled。VPS 43.98.170.203 不可达（SSH timeout），SOLUSDT数据不可下载。ETHUSDT仅1,441 bar（1天）。所有retain项目（Dual Momentum BTC Sharpe 1.002 / AlphaFlow v2 Sharpe 0.73）阻塞于第二合约验证。BNB上限确认Sharpe 0.87，无法突破1.0。
+
+**阻塞总结（5月31日起）**：
+- 已毕业：0
+- Retain阻塞：Dual Momentum BTC、AlphaFlow v2、CCI Extreme Trend、MulvaneyTrend — 均缺第二合约
+- 阻塞解除条件：VPS恢复 → 下载SOLUSDT/XRPUSDT → 验证Dual Momentum on SOLUSDT
+
+## [2026-06-01 19:00] skip | 定时巡检 — 无新文章
+
+9波定向搜索无新发现（Substack/Medium/Blog/Sepp均已覆盖）。新出现文章：
+- Artur Sepp「The Science and Practice of Trend-following Systems」— 理论框架（MA crossover/Donchian/TSMOM），无新策略规则，非单标的CTA
+- Stoic Research「ORB Strategy Near-1 Sharpe」— 加密ORB日内策略（BTC Sharpe 0.51），需5m+1h BarGenerator + 14:00 UTC时间窗，类似Intraday Momentum已失败
+- Quantitativo「Volume Shocks and Overnight Returns」— 美股隔夜横截面策略，非加密单标的
+
+VPS不可达，SOCKS5代理未建立。所有retain项目阻塞于第二合约验证。Dual Momentum BTC Sharpe 1.002仍最接近毕业。
+
+## [2026-06-01 13:00] skip | 定时巡检 + DualMomentum BNB 参数优化确认
+
+9波定向搜索无新文章（Substack/Medium/BoringEdge均已覆盖，BoringEdge「Bitcoin Donchian Breakout」与已毕业TurtleTrading同质）。VPS不可达，SOLUSDT无法下载。
+
+**DualMomentum BNB 补充参数扫描**（全量数据，3变体 vs 基线Sharpe 0.872）：
+- mom=150, pm=0.007 → Sharpe 0.437 ← 显著恶化
+- mom=200, pm=0.009 → Sharpe 0.380 ← 更高仓位降低Sharpe
+- atr_stop=2.5, cool=15 → Sharpe 0.446 ← 更紧止损/短冷却更差
+
+**结论**：BNB上限确认为Sharpe 0.87，无法突破1.0。基线参数已近最优。所有retain项目阻塞于第二合约验证。
+阻塞解除条件：①VPS恢复 → 下载SOLUSDT/XRPUSDT → 扩第二合约选择；②或发现BNB适配性更好的新策略架构。
+
+## [2026-06-01 12:00] skip | 定时巡检 — 无新文章（9波Search+Quantocracy不可用。新发现：quantitativo「Uncertainty」为Deep Momentum ML横截面策略，不可单标适配；quantjourney「Adaptive Trend-Following Crypto」paywalled无法提取规则；abouttrading「SMA+RSI BTC」无回测指标无交易规则。SOLUSDT数据仍未下载，VPS不可达。Dual Momentum BTC Sharpe 1.002仍接近毕业，阻塞于第二合约）
+
+## [2026-06-01 11:00] skip | 定时巡检 — 无新文章（9波Search覆盖Sepp/robotwealth/qoppac/Substack等，均为已覆盖理论论文或组合级分析。SOCKS5代理未建立，SOLUSDT数据无法下载。所有retain项目阻塞于第二合约验证。Dual Momentum BTC Sharpe 1.002/BTC仍是最接近毕业的策略，需补数据解锁第二合约）
+
+## [2026-06-01 10:00] close | Catching Crypto Trends — Retain (Sharpe 0.48, 滑点免疫, 分段均正, 未达毕业标准)
+
+## [2026-06-01 10:00] ingest | Catching Crypto Trends — Concretum Group Donchian集成趋势跟踪
+
+## [2026-06-01 09:00] skip | 定时巡检 — 无新文章（9波Search已覆盖。VPS SOCKS5代理10080未建立，无法下载SOLUSDT。所有retain项目阻塞于第二合约验证。Dual Momentum BTC Sharpe 1.002仍是最接近毕业的策略）
+
+## [2026-06-01 08:00] skip | 定时巡检 — Quantocracy不可用。9波Search发现1新文章(Bitcoin Momentum Strategy, paywalled无法提取交易规则)。CCI Extreme Trend BNB测试Sharpe=0.003不通过。已启动SOLUSDT数据下载(PID=163599)解锁未来第二合约验证。
+
+## [2026-06-01] skip | 定时巡检 — 无新文章（9波Search覆盖Substack/SSRN/Blog/Medium/PyQuantLab，Quantocracy代理不可用。15+策略类型已覆盖，无未处理的可编码单标的CTA文章）
+
+## [2026-06-01] retain | Dual Momentum BNB优化 — mom/position_multiplier 4组合全量扫描，BNB上限Sharpe 0.87，无法突破1.0。ETH数据不足，缺第二合约
+## [2026-06-01] retain | Dual Momentum BTC — BTC Sharpe 1.002 滑点免疫, BNB 0.872需优化，接近毕业
+## [2026-06-01] ingest | Dual Momentum on Bitcoin — 绝对+相对双动量过滤，ATR追踪止损
+## [2026-06-01] skip | 定时巡检 — 无新文章（活跃项目均已关闭，Step 0搜索无新发现）
+## [2026-06-01] close | Multi-Timeframe MACD BTC — Discard (6变体Sharpe均<0, MACD 1H信号在BTC上无alpha)
+## [2026-06-01] ingest | Multi-Timeframe MACD Trend Strategy on Bitcoin (Quantpedia)
+## [2026-06-01] skip | 定时巡检 — 无新文章（10+Search已覆盖Substack/SSRN/Blog/Medium，Quantocracy代理不可用）
+
+## [2026-06-01] close | Mulvaney Donchian Trend — Retain (BTC Sharpe 1.02, 滑点免疫, 分段一致; BNB 0.64 需优化)
+
+## [2026-06-01] backtest | MulvaneyTrendStrategy on BTCUSDT/BNBUSDT → Retain
+
+## [2026-06-01] ingest | You Can Trade (Almost) Like Mulvaney — Donchian通道突破+中线追踪止损+金字塔加仓
+
+## [2026-06-01] close | Regime-Dependent Trend Following — Discard (10+变体Sharpe均<0.1, 多资产组合框架无法移植加密单标的)
+
 ## [2026-05-31] close | CCI Extreme Trend — Retain (slippage=1 Sharpe=0.61, 稳健但未达毕业标准)
 
 ## [2026-05-31] ingest | Gold Trend Following (Unger Academy) — CCI ±300 + 日高低突破

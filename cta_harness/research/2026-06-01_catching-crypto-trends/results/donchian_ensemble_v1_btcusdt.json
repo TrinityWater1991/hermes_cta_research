@@ -1,0 +1,27 @@
+{
+  "strategy": "donchian_ensemble_strategy",
+  "symbol": "BTCUSDT.BINANCE",
+  "interval": "1m",
+  "params": {
+    "dc1": 3,
+    "dc2": 10,
+    "dc3": 30,
+    "dc4": 90,
+    "dc5": 200,
+    "entry_threshold": 0.3,
+    "position_multiplier": 0.007,
+    "use_dynamic_size": 1,
+    "atr_period": 20
+  },
+  "results": {
+    "sharpe_ratio": 0.477,
+    "total_return": 66.77,
+    "max_drawdown": -25.42,
+    "total_trade_count": 162,
+    "slippage_test_sharpe": 0.477,
+    "first_half_sharpe": 0.501,
+    "second_half_sharpe": 0.429
+  },
+  "status": "retain",
+  "date": "2026-06-01"
+}
